@@ -2,6 +2,8 @@
 #include <math.h>
 #include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 #define SAMPLE_RATE 44100
 #define PI          3.141593
@@ -55,11 +57,12 @@ main(int argc, const char **argv)
 
   const char *n = *(argv+1);
 
+  srand(time(NULL));
   for (;*n; n++) {
     if (*n == '.' || *n == ' ') 
       continue;
     puts(n); 
-    play(FREQS[(int)(*n - '0')], 0.4);
+    play(FREQS[(int)(*n - '0')], ((rand() % 5) + 3) / 10.0f);
   }
 
   return 0;
